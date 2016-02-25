@@ -145,7 +145,7 @@ public class Consumer extends Thread {
                 mUnparsableMessages *= DECAY;
             } catch (Throwable e) {
                 mUnparsableMessages++;
-                final double MAX_UNPARSABLE_MESSAGES = 1000.;
+                final double MAX_UNPARSABLE_MESSAGES = mConfig.getMaxUnparsableMessages();
                 if (mUnparsableMessages > MAX_UNPARSABLE_MESSAGES) {
                     throw new RuntimeException("Failed to parse message " + rawMessage, e);
                 }
@@ -165,7 +165,7 @@ public class Consumer extends Thread {
 
     /**
      * Helper to get the offset tracker (used in tests)
-     * 
+     *
      * @param topic
      * @param partition
      * @return
